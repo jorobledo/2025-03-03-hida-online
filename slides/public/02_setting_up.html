@@ -247,27 +247,225 @@
   <p class="date">February 2025</p>
 </section>
 
-<section class="slide level6">
+<section class="slide level3">
 
-<p>When we use Git on a new computer for the first time, we need to
-configure a few things. Below are a few examples of configurations we
-will set as we get started with Git:</p>
+<p>When we use Git on a new computer <strong>for the first
+time</strong>, we need to configure a few things. Below are a few
+examples of configurations we will set as we get started with Git:</p>
 <ul>
 <li class="fragment">our name and email address,</li>
 <li class="fragment">what our preferred text editor is,</li>
 <li class="fragment">and that we want to use these settings globally
 (i.e. for every project).</li>
 </ul>
+<div class="fragment">
+<p>The user name and email will be associated with your subsequent Git
+activity, which means that any changes pushed to a remote server will
+include this information.</p>
+<p>For this lesson, we will be interacting with <a
+href="https://github.com/">GitHub</a> and so the email address used
+should be the same as the one used when setting up your GitHub
+account.</p>
+</div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section class="slide level6">
-
+<section id="user" class="slide level3">
+<h3>User</h3>
 <p>Let’s configure our git with <strong>our own</strong> name and
 email</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">&quot;Alfredo Linguini&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">&quot;a.linguini@ratatouille.fr&quot;</span></span></code></pre></div>
+<div style="font-size: 80%;">
+<p>The flag <code>--global</code> tells Git to use the settings for
+every project, in your user account, on this computer.</p>
+</div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="line-endings" class="slide level3">
+<h3>Line Endings</h3>
+<p>As with other keys, when you press <kbd>Enter</kbd> or <kbd>↵</kbd>
+or <kbd>return</kbd> (Mac) on your keyboard, your computer encodes this
+input as a character. Different operating systems use different
+character(s) to represent the end of a line. (You may also hear these
+referred to as newlines or line breaks.) Because Git uses these
+characters to compare files, it may cause unexpected issues when editing
+a file on different machines.</p>
+<p>You can change the way Git recognizes and encodes line endings using
+the <code>core.autocrlf</code> command to <code>git config</code>. The
+following settings are recommended:</p>
+<p>On macOS and Linux:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> core.autocrlf input</span></code></pre></div>
+<p>And on Windows:</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> core.autocrlf true</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="text-editor" class="slide level3">
+<h3>Text editor</h3>
+<div style="font-size: 40%;">
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr>
+<th style="text-align: left;">Editor</th>
+<th style="text-align: left;">Configuration command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Atom</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "atom --wait"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">nano</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "nano -w"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">BBEdit (Mac, with command line tools)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "bbedit -w"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sublime Text (Mac)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sublime Text (Win, 32-bit install)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Sublime Text (Win, 64-bit install)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "'c:/program files/sublime text 3/sublime_text.exe' -w"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Notepad (Win)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "c:/Windows/System32/notepad.exe"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Notepad++ (Win, 32-bit install)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Notepad++ (Win, 64-bit install)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "'c:/program files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Kate (Linux)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "kate"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Gedit (Linux)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "gedit --wait --new-window"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Scratch (Linux)</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "scratch-text-editor"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Emacs</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "emacs"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">Vim</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "vim"</code></td>
+</tr>
+<tr>
+<td style="text-align: left;">VS Code</td>
+<td
+style="text-align: left;"><code>$ git config --global core.editor "code --wait"</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Comment 1</strong>: Note that Vim is the default editor for
+many programs. If you haven’t used Vim before and wish to exit a session
+without saving your changes, press <kbd>Esc</kbd> then type
+<code>:q!</code> and press <kbd>Enter</kbd> or <kbd>↵</kbd> or on Macs,
+<kbd>Return</kbd>. If you want to save your changes and quit, press
+<kbd>Esc</kbd> then type <code>:wq</code> and press <kbd>Enter</kbd> or
+<kbd>↵</kbd> or on Macs, <kbd>Return</kbd>. the <code>Esc</code> button
+ensures you that you are out of any insert mode, <code>:</code> allows
+to specify a vim command, <code>q</code> stands for quit, <code>w</code>
+for write, and <code>q!</code> forces to quit without saving.</p>
+<p><strong>Comment 2</strong>: Inline text editors are important and
+very useful!!! Try getting a hand of one of them.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</div>
+</section>
+<section id="default-branch-name" class="slide level3">
+<h3>Default branch name</h3>
+<p>Source file changes are associated with a “branch.” For new learners
+in this lesson, it’s enough to know that branches exist, and this lesson
+uses one branch.<br />
+By default, Git will create a branch called <code>master</code> when you
+create a new repository with <code>git init</code> (we will see this
+soon). This term evokes the racist practice of human slavery and the <a
+href="https://github.com/github/renaming">software development
+community</a> has moved to adopt more inclusive language.</p>
+<div class="fragment">
+<p>Try setting the default name:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="review-settings" class="slide level3">
+<h3>Review settings</h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--list</span> <span class="at">--global</span></span></code></pre></div>
+<p>In case of needing to edit it:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--edit</span></span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="final-comments" class="slide level3">
+<h3>Final comments</h3>
+<ul>
+<li class="fragment">It may be necessary to use a <a
+href="https://en.wikipedia.org/wiki/Proxy_server">proxy</a>. In this
+case, you may need to tell Git about it:</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> http.proxy proxy-url</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> https.proxy proxy-url</span></code></pre></div>
+</div>
+<div class="fragment">
+<p>To disable the proxy, use</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> http.proxy</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> https.proxy</span></code></pre></div>
+</div>
+<ul>
+<li class="fragment">Remember that in need of help (if you forget a
+command) you can always access the config help:</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">-h</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--help</span></span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
 </section>
     </div>
   </div>
