@@ -129,6 +129,7 @@ $ cd Desktop
 
 - Modify the same thing? ➡️ [conflict](https://swcarpentry.github.io/git-novice/instructor/reference.html#conflict)
 
+
 ---
 
 ## Takeaways
@@ -139,6 +140,16 @@ $ cd Desktop
 
 - The complete history of commits for a particular project and their metadata make up a [repository](https://swcarpentry.github.io/git-novice/instructor/reference.md#repository).
 
+- version control is like unlimited 'undo' or CTRL-Z.
+
+- Allows many people to work in parallel.
+
+<img src="imgs/hida-logo.svg" width="400">
+
 ---
 
+### Continue with
 
+[Setting up Git](./02_setting_up.html)
+
+<img src="imgs/hida-logo.svg" width="400">
