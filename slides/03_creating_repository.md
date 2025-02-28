@@ -165,6 +165,6 @@ $ rm -rf dirname
 
 ### Continue with
 
-[04. Tracking changes](./04_Tracking changes.html)
+[04. Tracking changes](./04_tracking_changes.html)
 
 <img src="imgs/hida-logo.svg" width="400">
