@@ -55,4 +55,116 @@ repository are **completely separate processes**.
 ```bash
 $ ls -a
 ```
+
 </div>
+
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+Git uses this special subdirectory to store all the information about the project,
+including the tracked files and sub-directories located within the project's directory.
+If we ever delete the `.git` subdirectory,
+we will lose the project's history.
+
+`git status` tells us the status of our project, and better, a list of changes in the project and options on what to do with those changes. We can use it as often as we want, whenever we want to understand what is going on.
+
+```bash
+$ git status
+```
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+Output:
+```output
+On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use "git add" to track)
+```
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+### Excercise
+
+Along with tracking information about recipes (the project we have already created),
+Alfredo would also like to track information about desserts specifically.
+Alfredo creates a `desserts` project inside his `recipes`
+project with the following sequence of commands:
+
+```bash
+$ cd ~/Desktop    # return to Desktop directory
+$ cd recipes      # go into recipes directory, which is already a Git repository
+$ ls -a           # ensure the .git subdirectory is still present in the recipes directory
+$ mkdir desserts # make a sub-directory recipes/desserts
+$ cd desserts    # go into desserts subdirectory
+$ git init        # make the desserts subdirectory a Git repository
+$ ls -a           # ensure the .git subdirectory is present indicating we have created a new Git repository
+```
+
+Is the `git init` command, run inside the `desserts` subdirectory, required for
+tracking files stored in the `desserts` subdirectory?
+
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+Git repositories can interfere with each other if they are "nested":
+the outer repository will try to version-control
+the inner repository. Therefore, **it's best to create each new Git
+repository in a separate directory**. To be sure that there is no conflicting
+repository in the directory, check the output of `git status`. If it looks
+like the following, you are good to go to create a new repository as shown
+above:
+
+```bash
+$ git status
+
+fatal: Not a git repository (or any of the parent directories): .git
+```
+
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+Alfredo would like now to go back to a single git repository. How can Alfredo undo
+his last `git init` in the `desserts` subdirectory?
+
+REMIMNDER: To delete if 
+
+<div class="fragment">
+it's a file:
+
+```bash
+$ rm filename
+```
+</div>
+
+<div class="fragment">
+it's a directory:
+```bash
+$ rm -rf dirname
+```
+</div>
+
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+## Takeaway
+
+- `git init` initializes a repository.
+- Git stores all of its repository data in the `.git` directory.
+
+<img src="imgs/hida-logo.svg" width="400">
+
+---
+
+### Continue with
+
+[04. Tracking changes](./04_Tracking changes.html)
+
+<img src="imgs/hida-logo.svg" width="400">
