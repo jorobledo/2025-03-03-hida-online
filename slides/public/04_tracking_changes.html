@@ -256,7 +256,8 @@ more files.</li>
 <li class="fragment">Explain where information is stored at each stage
 of that cycle.</li>
 <li class="fragment">Distinguish between descriptive and non-descriptive
-commit messages.</li>
+<a href="https://chris.beams.io/posts/git-commit/">commit
+messages</a>.</li>
 </ul>
 <div class="fragment">
 <h3 id="questions">Questions</h3>
@@ -378,8 +379,187 @@ exit the <code>git diff</code> commmand. If you have colors on your
 terminal, green (and <code>+</code> symbols) are addition and red (and
 <code>-</code> symbols) are deletions.</p>
 <ul>
-<li class="fragment">add, review, and commit the changes.</li>
+<li class="fragment"><strong>Excercise</strong>: add, review, and commit
+the changes with commit message “Add ingredients for basic
+guacamole”.</li>
 </ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="staging" class="slide level2">
+<h2>staging</h2>
+<p>Git has a special <em>staging area</em> where it keeps track of
+things that have been added to the current <a
+href="https://swcarpentry.github.io/git-novice/reference.md#changeset">changeset</a>
+but not yet committed.</p>
+<ul>
+<li class="fragment"><code>git add</code> specifies <em>what</em> will
+go in the staging area,</li>
+<li class="fragment"><code>git commit</code> then <em>actually saves the
+current snapshot of the repository</em>, by making a permanent record of
+the changes (as a commit).</li>
+</ul>
+<p><img data-src="imgs/git-staging-area.svg"
+alt="A diagram showing how &quot;git add&quot; registers changes in the staging area, while &quot;git commit&quot; moves changes from the staging area to the repository" /></p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="excercise" class="slide level2">
+<h2>Excercise</h2>
+<ul>
+<li class="fragment"><p>Improve our recipe by changing ‘lemon’ to ‘lime’
+in <code>guacamole.md</code></p></li>
+<li class="fragment"><p>check the difference with
+<code>git diff</code>.</p></li>
+<li class="fragment"><p>Since we agree with the changes, let’s add them
+to the staging area, and now see which are the differences again with
+<code>git diff</code>. Anything different?</p></li>
+</ul>
+<div class="fragment">
+<p>Solution:</p>
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff <span class="at">--staged</span></span></code></pre></div>
+</div>
+<div class="fragment">
+<p>If you’re satisfied, save your changes (commit)!</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;Modify guacamole to the traditional recipe&quot;</span></span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<ul>
+<li class="fragment"><p><strong>comment</strong>: Sometimes, e.g. in the
+case of the text documents a line-wise diff is too coarse. That is where
+the <code>--color-words</code> option of <code>git diff</code> comes in
+very useful as it highlights the changed words using colors.</p></li>
+<li class="fragment"><p>When the output of <code>git log</code> is too
+long to fit in your screen, <code>git</code> uses a program to split it
+into pages of the size of your screen. When this “pager” is called, you
+will notice that the last line in your screen is a <code>:</code>,
+instead of your usual prompt.</p>
+<ul>
+<li class="fragment">To get out of the pager, press <kbd>Q</kbd>.</li>
+<li class="fragment">To move to the next page, press
+<kbd>Spacebar</kbd>. To go back a page, press <kbd>B</kbd>.</li>
+<li class="fragment">To search for <code>some_word</code> in all pages,
+press <kbd>/</kbd> and type <code>some_word</code>. Navigate through
+matches pressing <kbd>N</kbd>. To navigate back matches press
+<kbd>Shift+N</kbd>.</li>
+</ul></li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="limiting-log-size">Limiting Log size</h3>
+<ul>
+<li class="fragment"><code>git log -N</code>: Last <span
+class="math inline"><em>N</em></span> commits. For example</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb14"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">-1</span></span></code></pre></div>
+</div>
+<ul>
+<li class="fragment"><code>--online</code>: reduce quantity of
+information</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb15"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">--oneline</span></span></code></pre></div>
+</div>
+<ul>
+<li class="fragment"><code>--graph</code>: display commit history as
+text-based graph</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb16"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log <span class="at">--graph</span></span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="directories">Directories</h3>
+<ul>
+<li class="fragment">Git does not track directories on their own, only
+files within them. To force Git to keep track of an empty directory,
+some people add an empty hidden file <code>.gitkeep</code> inside the
+directory.</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb17"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir cakes</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add cakes</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
+</div>
+<ul>
+<li class="fragment">If you create a directory in your Git repository
+and populate it with files, you can add all the files in the directory
+at once by referring to the directory in your <code>git add</code>
+command.</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb18"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> touch cakes/brownie_cakes/lemon_drizzle</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add cakes</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
+</div>
+<ul>
+<li class="fragment">Commit these changes with message ““Add some
+initial cakes”” so we are in the same state</li>
+</ul>
+</section>
+<section id="choosing-a-commit-message" class="slide level2">
+<h2>Choosing a Commit Message</h2>
+<p>Which of the following commit messages would be most appropriate for
+the last commit made to <code>guacamole.md</code>?</p>
+<ol type="1">
+<li class="fragment">“Changes”</li>
+<li class="fragment">“Changed lemon for lime”</li>
+<li class="fragment">“Guacamole modified to the traditional recipe”</li>
+</ol>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="excercise-1">Excercise</h3>
+<h4 id="committing-multiple-files">Committing Multiple Files</h4>
+<ul>
+<li class="fragment"><p>The staging area can hold changes from any
+number of files that you want to commit as a single snapshot.</p>
+<ol type="1">
+<li class="fragment">Add some text to <code>guacamole.md</code> noting
+the rough price of the ingredients.</li>
+<li class="fragment">Create a new file <code>groceries.md</code> with a
+list of products and their prices for different markets.</li>
+<li class="fragment">Add changes from both files to the staging area,
+and commit those changes.</li>
+</ol></li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="excercise-2">Excercise</h3>
+<h4 id="bio-repository"><code>bio</code> Repository</h4>
+<ul>
+<li class="fragment">Create a new Git repository on your computer called
+<code>bio</code>.</li>
+<li class="fragment">Write a three-line biography for yourself in a file
+called <code>me.txt</code>, commit your changes</li>
+<li class="fragment">Modify one line, add a fourth line</li>
+<li class="fragment">Display the differences between its updated state
+and its original state.</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="continue-with">Continue with</h3>
+<p><a href="./05_exploring_history.html">05. Exploring History</a></p>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
     </div>
