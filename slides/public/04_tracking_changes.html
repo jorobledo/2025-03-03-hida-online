@@ -341,6 +341,47 @@ additional space to explain why you made changes and/or what their
 impact will be.</p>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
+<section id="commit-history" class="slide level2">
+<h2>Commit history</h2>
+<p>If we want to know what we’ve done recently, we can ask Git to show
+us the project’s history using <code>git log</code>:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git log</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Alfredo now wants to add more information to the Guacamole recipe,
+let’s say he wants it to look like:</p>
+<pre class="output"><code># Guacamole
+## Ingredients
+* avocado
+* lemon
+* salt
+## Instructions</code></pre>
+<ul>
+<li class="fragment">modify the file to include the changes</li>
+<li class="fragment">run <code>git status</code> and observe the
+output</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="reviewing-changes" class="slide level2">
+<h2>Reviewing changes</h2>
+<p>We have changed this file, but we haven’t told Git we will want to
+save those changes (which we do with <code>git add</code>) nor have we
+saved them (which we do with <code>git commit</code>).</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff</span></code></pre></div>
+<p><strong>comment</strong>: you might need to press <code>q</code> to
+exit the <code>git diff</code> commmand. If you have colors on your
+terminal, green (and <code>+</code> symbols) are addition and red (and
+<code>-</code> symbols) are deletions.</p>
+<ul>
+<li class="fragment">add, review, and commit the changes.</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
     </div>
   </div>
 
