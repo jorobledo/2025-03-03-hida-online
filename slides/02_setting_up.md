@@ -1,7 +1,7 @@
 ---
 author: Jose Robledo
 title: Setting up Git
-date: February 2025
+date: 04 March 2025
 ---
 
 When we use Git on a new computer **for the first time**,

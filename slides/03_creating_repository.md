@@ -1,7 +1,7 @@
 ---
 author: Jose Robledo
 title: Creating a repository
-date: February 2025
+date: 04 March 2025
 ---
 
 ### What is a Git repository?

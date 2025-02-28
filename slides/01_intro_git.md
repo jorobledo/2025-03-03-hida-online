@@ -1,7 +1,7 @@
 ---
 author: Jose Robledo
 title: Introduction to Git
-date: February 2025
+date: 04 March 2025
 ---
 ## Important links
 
