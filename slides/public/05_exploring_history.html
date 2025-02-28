@@ -30,6 +30,71 @@
       vertical-align: middle;
     }
     .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="./dist/theme/simple.css" id="theme">
   <style>
@@ -183,8 +248,154 @@
   <p class="date">04 March 2025</p>
 </section>
 
-<section class="slide level6">
+<section id="objectives" class="slide level3">
+<h3>Objectives</h3>
+<ul>
+<li class="fragment">Explain what the HEAD of a repository is and how to
+use it.</li>
+<li class="fragment">Identify and use Git commit numbers.</li>
+<li class="fragment">Compare various versions of tracked files.</li>
+<li class="fragment">Restore old versions of files.</li>
+</ul>
+<h4 id="questions">Questions</h4>
+<ul>
+<li class="fragment">How can I identify old versions of files?</li>
+<li class="fragment">How do I review my changes?</li>
+<li class="fragment">How can I recover old versions of files?</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="head" class="slide level3">
+<h3>Head</h3>
+<p>You can refer to the <em>most recent commit</em> of the working
+directory by using the identifier <code>HEAD</code>.</p>
+<p>Before we start, let’s make a change to <code>guacamole.md</code>,
+adding yet another line. Lets say we want to add a change we don’t want,
+for example, let’s add in the instructions a phrase “Do nothing.”</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano guacamole.md</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat guacamole.md</span></code></pre></div>
+<div class="fragment">
+<p>Now look at the difference by typing</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff HEAD guacamole.md</span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
 
+<p>Note that <code>HEAD</code> is the default option for
+<code>git diff</code>, so omitting it will not change the command’s
+output at all (give it a try). However, the real power of
+<code>git diff</code> lies in its ability to compare with previous
+commits. For example, by adding <code>~1</code> (where “~” is “tilde”,
+pronounced [<strong>til</strong>-d<em>uh</em>]), we can look at the
+commit before <code>HEAD</code>.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff HEAD~1 guacamole.md</span></code></pre></div>
+<p>If we want to see the differences between older commits we can use
+<code>git diff</code> again, but with the notation <code>HEAD~1</code>,
+<code>HEAD~2</code>, and so on, to refer to them:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff HEAD~2 guacamole.md</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<p>We could also use <code>git show</code> which shows us what changes
+we made at an older commit as well as the commit message, rather than
+the <em>differences</em> between a commit and our working directory that
+we see by using <code>git diff</code>.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git show HEAD~2 guacamole.md</span></code></pre></div>
+<p>We can also refer to commits using those long strings of digits and
+letters that both <code>git log</code> and <code>git show</code>
+display. These are unique IDs for the changes, and “unique” really does
+mean unique: every change to any set of files on any computer has a
+unique 40-character identifier.</p>
+<p>Typing out random 40-character strings is annoying, so Git lets us
+use just the first few characters (typically seven for normal size
+projects)</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git diff f22b25e guacamole.md</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="reverting-changes" class="slide level3">
+<h3>Reverting changes</h3>
+<p>Let’s suppose we change our mind about the last update to
+<code>guacamole.md</code> (the “ill-considered change” “Do
+nothing”).</p>
+<p><code>git status</code> now tells us that the file has been changed,
+but those changes haven’t been staged:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
+<p>We can put things back the way they were by using
+<code>git restore</code>:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git restore guacamole.md</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat guacamole.md</span></code></pre></div>
+<p>By default, it recovers the version of the file recorded in
+<code>HEAD</code>, which is the last saved commit.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<p>If we want to go back even further, we can use a commit identifier
+instead, using <code>-s</code> option:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git restore <span class="at">-s</span> f22b25e guacamole.md</span></code></pre></div>
+<p>Notice that the changes are not currently in the staging area, and
+have not been committed. If we wished, we can put things back the way
+they were at the last commit by using <code>git restore</code> to
+overwrite the working copy with the last committed version. We use the
+<code>.</code> to mean all files.</p>
+<p><img data-src="imgs/git-restore.svg"
+alt="A diagram showing how git restore can be used to restore the previous version of two files" /></p>
+</section>
+<section id="summary" class="slide level3">
+<h3>Summary</h3>
+<figure>
+<img data-src="imgs/git_staging.svg"
+alt="A diagram showing the entire git workflow: local changes are staged using git add, applied to the local repository using git commit, and can be restored from the repository using git checkout" />
+<figcaption>https://figshare.com/articles/How_Git_works_a_cartoon/1328266</figcaption>
+</figure>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="excercise" class="slide level3">
+<h3>Excercise</h3>
+<ul>
+<li class="fragment">Jennifer has made changes to the Python script that
+she has been working on for weeks, and the modifications she made this
+morning “broke” the script and it no longer runs. She has spent ~ 1hr
+trying to fix it, with no luck… Luckily, she has been keeping track of
+her project’s versions using Git! Which commands below will let her
+recover the last committed version of her Python script called
+<code>data_cruncher.py</code> (more than one can be correct)?</li>
+</ul>
+<ol type="1">
+<li class="fragment"><code>$ git restore</code></li>
+<li class="fragment"><code>$ git restore data_cruncher.py</code></li>
+<li
+class="fragment"><code>$ git restore -s HEAD~1 data_cruncher.py</code></li>
+<li
+class="fragment"><code>$ git restore -s &lt;unique ID of last commit&gt; data_cruncher.py</code></li>
+</ol>
+</section>
+<section id="reverting-changes-1" class="slide level3">
+<h3>Reverting changes</h3>
+<p>The command <code>git revert</code> is different from
+<code>git restore -s [commit ID] .</code> because
+<code>git restore</code> returns the files not yet committed within the
+local repository to a previous state, whereas <code>git revert</code>
+reverses changes committed to the local and project repositories.</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> revert [commit ID]</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="continue-with" class="slide level3">
+<h3>Continue with</h3>
+<p><a href="./06_ignoring.html">06. Ignoring things</a></p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
     </div>
   </div>
