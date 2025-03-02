@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Jose Robledo">
   <meta name="dcterms.date" content="2025-03-04">
-  <title>Setting up Git</title>
+  <title>Branching and Merging</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -243,234 +243,111 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Setting up Git</h1>
+  <h1 class="title">Branching and Merging</h1>
   <p class="author">Jose Robledo</p>
   <p class="date">04 March 2025</p>
 </section>
 
-<section class="slide level3">
+<section class="slide level1">
 
-<p>When we use Git on a new computer <strong>for the first
-time</strong>, we need to configure a few things. Below are a few
-examples of configurations we will set as we get started with Git:</p>
+<h3 id="branching">Branching</h3>
 <ul>
-<li class="fragment">our name and email address,</li>
-<li class="fragment">what our preferred text editor is,</li>
-<li class="fragment">and that we want to use these settings globally
-(i.e. for every project).</li>
+<li class="fragment">a <a
+href="https://git-scm.com/book/en/v2/Git-Branching-Branches-in-a-Nutshell">Branch</a>
+is something like a “copy” of your current folder where you can work on
+new features or fixes without affecting the current “main” folder.</li>
+<li class="fragment">In this new branch, you can experiment safely
+without braking anything for the rest of your collaborators :) Specially
+useful for coding.</li>
+<li class="fragment">It allows you to work on new features without
+affecting the main code.</li>
+<li class="fragment">Helps keeping the main branch stable!!</li>
 </ul>
-<div class="fragment">
-<p>The user name and email will be associated with your subsequent Git
-activity, which means that any changes pushed to a remote server will
-include this information.</p>
-<p>For this lesson, we will be interacting with <a
-href="https://github.com/">GitHub</a> and so the email address used
-should be the same as the one used when setting up your GitHub
-account.</p>
-</div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section id="user" class="slide level3">
-<h3>User</h3>
-<p>Let’s configure our git with <strong>our own</strong> name and
-email</p>
+<section class="slide level1">
+
+<h3 id="creating-a-new-branch">Creating a new branch</h3>
+<p>Let’s say we want to update the guacamole recipe, which we know
+Alfredo is currently working on.</p>
+<p>To create a new branch, called “new_guacamole” there are two possible
+ways</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.name <span class="st">&quot;Alfredo Linguini&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> user.email <span class="st">&quot;a.linguini@ratatouille.fr&quot;</span></span></code></pre></div>
-<div style="font-size: 80%;">
-<p>The flag <code>--global</code> tells Git to use the settings for
-every project, in your user account, on this computer.</p>
-</div>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="line-endings" class="slide level3">
-<h3>Line Endings</h3>
-<p>As with other keys, when you press <kbd>Enter</kbd> or <kbd>↵</kbd>
-or <kbd>return</kbd> (Mac) on your keyboard, your computer encodes this
-input as a character. Different operating systems use different
-character(s) to represent the end of a line. (You may also hear these
-referred to as newlines or line breaks.) Because Git uses these
-characters to compare files, it may cause unexpected issues when editing
-a file on different machines.</p>
-<p>You can change the way Git recognizes and encodes line endings using
-the <code>core.autocrlf</code> command to <code>git config</code>. The
-following settings are recommended:</p>
-<p>On macOS and Linux:</p>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout <span class="at">-b</span> new-guacamole</span></code></pre></div>
+<p>or</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> core.autocrlf input</span></code></pre></div>
-<p>And on Windows:</p>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git branch new-guacamole</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout new-guacamole</span></code></pre></div>
+<p>To see local (remote add flag <code>-r</code>) branches,</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> core.autocrlf true</span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git branch</span></code></pre></div>
+</section>
+<section class="slide level1">
+
+<h3 id="commiting-in-new-branch">Commiting in new branch</h3>
+<p>If you make changes in the new branch and commit them, <strong>they
+will not modify the main branch of the repository</strong>, they will
+follow a new “timeline” of the repository, which started in an initial
+“node” commit, but then separated (like branches in a tree) into two
+working lines.</p>
+<p><img src="./imgs/git-branches-merge.png" height=200></p>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section id="text-editor" class="slide level3">
-<h3>Text editor</h3>
-<div style="font-size: 40%;">
-<table>
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 72%" />
-</colgroup>
-<thead>
-<tr>
-<th style="text-align: left;">Editor</th>
-<th style="text-align: left;">Configuration command</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: left;">Atom</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "atom --wait"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">nano</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "nano -w"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">BBEdit (Mac, with command line tools)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "bbedit -w"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Sublime Text (Mac)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl -n -w"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Sublime Text (Win, 32-bit install)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "'c:/program files (x86)/sublime text 3/sublime_text.exe' -w"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Sublime Text (Win, 64-bit install)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "'c:/program files/sublime text 3/sublime_text.exe' -w"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Notepad (Win)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "c:/Windows/System32/notepad.exe"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Notepad++ (Win, 32-bit install)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "'c:/program files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Notepad++ (Win, 64-bit install)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "'c:/program files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Kate (Linux)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "kate"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Gedit (Linux)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "gedit --wait --new-window"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Scratch (Linux)</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "scratch-text-editor"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Emacs</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "emacs"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">Vim</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "vim"</code></td>
-</tr>
-<tr>
-<td style="text-align: left;">VS Code</td>
-<td
-style="text-align: left;"><code>$ git config --global core.editor "code --wait"</code></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Comment 1</strong>: Note that Vim is the default editor for
-many programs. If you haven’t used Vim before and wish to exit a session
-without saving your changes, press <kbd>Esc</kbd> then type
-<code>:q!</code> and press <kbd>Enter</kbd> or <kbd>↵</kbd> or on Macs,
-<kbd>Return</kbd>. If you want to save your changes and quit, press
-<kbd>Esc</kbd> then type <code>:wq</code> and press <kbd>Enter</kbd> or
-<kbd>↵</kbd> or on Macs, <kbd>Return</kbd>. the <code>Esc</code> button
-ensures you that you are out of any insert mode, <code>:</code> allows
-to specify a vim command, <code>q</code> stands for quit, <code>w</code>
-for write, and <code>q!</code> forces to quit without saving.</p>
-<p><strong>Comment 2</strong>: Inline text editors are important and
-very useful!!! Try getting a hand of one of them.</p>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</div>
-</section>
-<section id="default-branch-name" class="slide level3">
-<h3>Default branch name</h3>
-<p>Source file changes are associated with a “branch.” For new learners
-in this lesson, it’s enough to know that branches exist, and this lesson
-uses one branch.<br />
-By default, Git will create a branch called <code>master</code> when you
-create a new repository with <code>git init</code> (we will see this
-soon). This term evokes the racist practice of human slavery and the <a
-href="https://github.com/github/renaming">software development
-community</a> has moved to adopt more inclusive language.</p>
+<section class="slide level1">
+
+<h3 id="merging">Merging</h3>
+<p>Let’s say you are satisfied with the new guacamole recipe, and you
+want to share it back to Alfredo. There are two possible ways.</p>
+<ul>
+<li class="fragment">We can directly <code>merge</code> the branch
+<code>new-guacamole</code> to main, and push the changes to the remote
+repository.</li>
+</ul>
 <div class="fragment">
-<p>Try setting the default name:</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> init.defaultBranch main</span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout main</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git merge new-guacamole</span></code></pre></div>
 </div>
+<ul>
+<li class="fragment">We can push our current branch to the local
+repository to let Alfredo see it. If he is satisfied with it, we can
+include the <code>new-guacamole</code> branch to the <code>main</code>
+branch by performing a <code>pull request</code> from
+<code>new_guacamole</code> to <code>main</code>.</li>
+</ul>
+</section>
+<section class="slide level1">
+
+<h3 id="merge-conflicts-tough">Merge conflicts (tough!)</h3>
+<p>Sometimes, Git can’t automatically merge changes because the same
+lines of a file were modified differently in two branches. This is
+called a merge conflict.</p>
+<p>In this case, git will notify you and you’ll need to manually edit
+the files to resolve the conflict.</p>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section id="review-settings" class="slide level3">
-<h3>Review settings</h3>
+<section class="slide level1">
+
+<h3 id="detached-head">detached head</h3>
+<ul>
+<li class="fragment"><p>We had seen you can also checkout a commit
+instead of a branch. That is, you can go to that point of the history of
+the folder. In this case, are are in a <strong>detached HEAD</strong>
+state, because any commit made here will not be associated to any named
+branch anymore. You are now directly referencing to a commit.</p></li>
+<li class="fragment"><p>If you are in a <strong>detached HEAD</strong>
+state, create a new branch and switch to it! (This provides a new name
+reference for further commits)</p></li>
+</ul>
+<div class="fragment">
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--list</span> <span class="at">--global</span></span></code></pre></div>
-<p>In case of needing to edit it:</p>
-<div class="sourceCode" id="cb6"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--edit</span></span></code></pre></div>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="final-comments" class="slide level3">
-<h3>Final comments</h3>
-<ul>
-<li class="fragment">It may be necessary to use a <a
-href="https://en.wikipedia.org/wiki/Proxy_server">proxy</a>. In this
-case, you may need to tell Git about it:</li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb7"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> http.proxy proxy-url</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> https.proxy proxy-url</span></code></pre></div>
-</div>
-<div class="fragment">
-<p>To disable the proxy, use</p>
-<div class="sourceCode" id="cb8"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> http.proxy</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> <span class="at">--unset</span> https.proxy</span></code></pre></div>
-</div>
-<ul>
-<li class="fragment">Remember that in need of help (if you forget a
-command) you can always access the config help:</li>
-</ul>
-<div class="fragment">
-<div class="sourceCode" id="cb9"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">-h</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--help</span></span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git checkout <span class="at">-b</span> my-new-branch</span></code></pre></div>
 </div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section id="continue-with" class="slide level3">
-<h3>Continue with</h3>
-<p><a href="./03_creating_repository.html">03. Creating a
-repository</a></p>
-<div style="font-size: 40%;">
-<p><strong>Content </strong></p>
+<section id="end" class="slide level1">
+<h1>END</h1>
+<p><strong>Content</strong></p>
 <p><a href="./01_intro_git.html">01. Intro to Git</a></p>
 <p><a href="./02_setting_up.html">02. Setting up Git</a></p>
 <p><a href="./03_creating_repository.html">03. Creating a
@@ -482,8 +359,6 @@ repository</a></p>
 <p><a href="./08_collaborating.html">08. Collaborating</a></p>
 <p><a href="./09_branching_merging.html">09. Branching and
 Merging</a></p>
-</div>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
     </div>
   </div>

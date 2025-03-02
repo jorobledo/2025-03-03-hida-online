@@ -6,14 +6,36 @@ date: 04 March 2025
 ## Important links
 
 - [Main material - The Carpentries](https://swcarpentry.github.io/git-novice/index.html)
-- [Zoom link]()
-- [Course page]()
-- [HIDA page]()
-- [Survey at the end of the course]()
-- [Source for these slides]()
+- [Zoom link](https://helmholtz-de.zoom-x.de/j/69409742606?pwd=BiPLIfKaTxAUI2hVAUvfhHBbMsKB2a.1)
+- [Course page](https://jorobledo.github.io/2025-03-03-hida-online/)
+- [HIDA event page](https://events.hifis.net/event/2053/)
+- [Source for these slides](https://github.com/jorobledo/2025-03-03-hida-online/tree/gh-pages/slides)
 
 <img src="imgs/hida-logo.svg" width="400">
 
+---
+
+#### Course content
+
+[01. Intro to Git](./01_intro_git.html)
+
+[02. Setting up Git](./02_setting_up.html)
+
+[03. Creating a repository](./03_creating_repository.html)
+
+[04. Tracking changes](./04_tracking_changes.html)
+
+[05. Exploring History](./05_exploring_history.html)
+
+[06. Ignoring things](./06_ignoring.html)
+
+[07. Remotes in GitHub](./07_github.html)
+
+[08. Collaborating](./08_collaborating.html)
+
+[09. Branching and Merging](./09_branching_merging.html)
+
+---
 
 ## Goals for this course:
 
@@ -150,6 +172,29 @@ $ cd Desktop
 
 ### Continue with
 
-[Setting up Git](./02_setting_up.html)
+[02. Setting up Git](./02_setting_up.html)
+
+<div style="font-size: 40%;">
+
+**Content **
+
+[01. Intro to Git](./01_intro_git.html)
+
+[02. Setting up Git](./02_setting_up.html)
+
+[03. Creating a repository](./03_creating_repository.html)
+
+[04. Tracking changes](./04_tracking_changes.html)
+
+[05. Exploring History](./05_exploring_history.html)
+
+[06. Ignoring things](./06_ignoring.html)
+
+[07. Remotes in GitHub](./07_github.html)
+
+[08. Collaborating](./08_collaborating.html)
+
+[09. Branching and Merging](./09_branching_merging.html)
+</div>
 
 <img src="imgs/hida-logo.svg" width="400">
