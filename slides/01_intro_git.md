@@ -150,6 +150,6 @@ $ cd Desktop
 
 ### Continue with
 
-[Setting up Git](./02_setting_up.html)
+[02. Setting up Git](./02_setting_up.html)
 
 <img src="imgs/hida-logo.svg" width="400">

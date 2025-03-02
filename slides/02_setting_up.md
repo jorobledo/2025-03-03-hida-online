@@ -174,6 +174,6 @@ $ git config --help
 
 ### Continue with
 
-[Creating a repository](./03_creating_repository.html)
+[03. Creating a repository](./03_creating_repository.html)
 
 <img src="imgs/hida-logo.svg" width="400">
