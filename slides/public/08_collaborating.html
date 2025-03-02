@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Jose Robledo">
+  <meta name="dcterms.date" content="2025-03-04">
+  <title>Collaborating</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./dist/reset.css">
+  <link rel="stylesheet" href="./dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="./dist/theme/simple.css" id="theme">
+  <style>
+  .container{
+    display: flex;
+  }
+  .col {
+    flex: 1;
+  }
+
+  .slides {
+      font-size: 0.75em;
+  }
+  .reveal ul {
+      display: block;
+  }
+  .reveal ol {
+      display: block;
+  }
+
+  img {
+      max-height: 600px !important;
+  }
+
+  figcaption {
+      font-size: 0.6em !important;
+      font-style: italic !important;
+  }
+
+  .subtitle {
+      font-style: italic !important;
+  }
+
+  .date {
+      font-size: 0.75em !important;
+  }
+
+
+  body {
+      font-family: "Arial", "sans-serif"
+  }
+
+  section {
+      margin: 0;
+  }
+
+  .reveal .slides {
+      margin: 0 1vmin;
+  }
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4 {
+      font-family: "Arial", "sans-serif";
+      text-transform: Uppercase;
+      color: #053152;
+  }
+
+  .reveal h1 {
+      color: #f1efef;
+      font-size: 250%;
+  }
+
+
+  .reveal h2 + h3 {
+      text-transform: Unset;
+      font-size: 80%;
+  }
+
+  .controls {
+      visibility: hidden;
+  }
+
+  .reveal .progress {
+      position: absolute;
+      bottom: 1px;
+  }
+
+  .prompt {
+      min-width: 0;
+      width: 0;
+      visibility: hidden;
+  }
+
+  div.dateauthor {
+      padding-top: 4em;
+      color: white;
+  }
+
+  div.prompt {
+      width:0;
+  }
+
+
+  div#footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 10;
+  font-size: 0.5em; font-weight: bold; padding: 0 1vmin; height: 20vmin; background: #fff}
+  #footer h1 {
+      position: absolute;
+      bottom: 3.2vmin;
+      display: block;
+      padding: 0 1em;
+      font-size: 1.7vmin;
+      font-weight: bold;
+      text-transform: unset;
+      color: #053152;
+  }
+  #footer h2 {display: block; padding: 0.em 1em 0;}
+
+  img.fzjlogo {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 24vmin; /* The height of the svg is about 3 times the height of the logo */
+      margin-bottom: -3vmin; /* Baseline of logo should be about 5% of short side above edge. */
+  }
+
+  .rendered_html img, svg {
+      max-height: 440px;
+  }
+
+  /* Inline code */
+  code {
+      background-color: #f5f5f5; /* Light gray */
+      color: #333; /* Darker text for contrast */
+      padding: 2px 4px;
+      border-radius: 3px;
+  }
+
+  /* Block code */
+  pre code {
+      background-color: #eeeeee; /* Even lighter gray */
+      color: #222; /* Darker text */
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Collaborating</h1>
+  <p class="author">Jose Robledo</p>
+  <p class="date">04 March 2025</p>
+</section>
+
+<section id="objectives" class="slide level3">
+<h3>Objectives</h3>
+<ul>
+<li class="fragment">Clone a remote repository.</li>
+<li class="fragment">Collaborate by pushing to a common repository.</li>
+<li class="fragment">Describe the basic collaborative workflow.</li>
+</ul>
+<h4 id="questions">Questions</h4>
+<ul>
+<li class="fragment">How can I use version control to collaborate with
+other people?</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="exercise" class="slide level3">
+<h3>Exercise</h3>
+<ul>
+<li class="fragment"><p>We will work in pairs. One person will be the
+“Owner” and the other will be the “Collaborator”. The goal is that the
+Collaborator add changes into the Owner’s repository. <strong>We will
+switch roles at the end, so both persons will play Owner and
+Collaborator</strong>.</p></li>
+<li class="fragment"><p>If you’re working through this lesson on your
+own, you can carry on by opening a second terminal window.</p></li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<p>The Owner needs to give the Collaborator access. In your repository
+page on GitHub, click the “Settings” button on the right, select
+“Collaborators”, click “Add people”, and then enter your partner’s
+username.</p>
+<p><img src="imgs/github-add-collaborators.png" height=400></p>
+<p>To accept access to the Owner’s repo, the Collaborator needs to go to
+<a
+href="https://github.com/notifications">https://github.com/notifications</a>
+or check for email notification.</p>
+</section>
+<section class="slide level3">
+
+<ul>
+<li class="fragment">The Collaborator needs to download a copy of the
+Owner’s repository to her machine. This is called “cloning a repo”.</li>
+</ul>
+<div class="fragment">
+<p>may be useful to change name to avoid cloning on top of our current
+recipes folder:<br />
+</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git clone git@github.com:alflin/recipes.git ~/Desktop/alflin-recipes</span></code></pre></div>
+</div>
+</section>
+<section class="slide level3">
+
+<h4 id="now-it-looks-like-this">Now it looks like this</h4>
+<p><img data-src="imgs/github-collaboration.svg"
+alt="A diagram showing that &quot;git clone&quot; can create a copy of a remote GitHub repository, allowing a second person to create their own local repository that they can make changes to." /></p>
+</section>
+<section class="slide level3">
+
+<p>As a collaborator, make a change in the repository and commit it. For
+example, you could add a recipe for hummus in a new file.</p>
+<pre class="output"><code># Hummus
+## Ingredients
+* chickpeas
+* lemon
+* olive oil
+* salt</code></pre>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add hummus.md</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;Add ingredients for hummus&quot;</span></span></code></pre></div>
+<p>Then push the change to the <em>Owner’s repository</em> on
+GitHub:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push origin main</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="remotes" class="slide level3">
+<h3>Remotes</h3>
+<p>A remote is a copy of the repository that is hosted somewhere else,
+that we can <code>push</code> to and <code>pull</code> from, and there’s
+no reason that you have to work with only one. On some large projects
+you might have your own copy in your GitHub account (you’d probably call
+this <code>origin</code>) and also the main “upstream” project
+repository. You would pull from <code>upstream</code> from time to time
+to get the latest updates that other people have committed.</p>
+<ul>
+<li class="fragment"><code>git remote -v</code> lists all the remotes
+that are configured (we already used this in the last episode)</li>
+<li class="fragment"><code>git remote add [name] [url]</code> is used to
+add a new remote</li>
+<li class="fragment"><code>git remote remove [name]</code> removes a
+remote. Note that it doesn’t affect the remote repository at all - it
+just removes the link to it from the local repo.</li>
+<li class="fragment"><code>git remote set-url [name] [newurl]</code>
+changes the URL that is associated with the remote. This is useful if it
+has moved.</li>
+<li class="fragment"><code>git remote rename [oldname] [newname]</code>
+changes the local alias by which a remote is known - its name. For
+example, one could use this to change <code>upstream</code> to
+<code>alfred</code>.</li>
+</ul>
+</section>
+<section id="pulling" class="slide level3">
+<h3>Pulling</h3>
+<p>To download the Collaborator’s changes from GitHub, the Owner now
+enters:</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre></div>
+<h4 id="fetching">Fetching</h4>
+<p>On the command line, the Collaborator can use
+<code>git fetch origin main</code> to get the remote changes into the
+local repository, but without merging them. Then by running
+<code>git diff main origin/main</code> the Collaborator will see the
+changes output in the terminal.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="collaborative-workflow" class="slide level3">
+<h3>Collaborative workflow</h3>
+<p>In practice, it is good to be sure that you have an updated version
+of the repository you are collaborating on, so you should
+<code>git pull</code> before making our changes. The basic collaborative
+workflow would be:</p>
+<ul>
+<li class="fragment">update your local repo with
+<code>git pull origin main</code>,</li>
+<li class="fragment">make your changes and stage them with
+<code>git add</code>,</li>
+<li class="fragment">commit your changes with
+<code>git commit -m</code>, and</li>
+<li class="fragment">upload the changes to GitHub with
+<code>git push origin main</code></li>
+</ul>
+<div class="fragment">
+<p>It is better to make many commits with smaller changes rather than of
+one commit with massive changes: small commits are easier to read and
+review.</p>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="continue-with" class="slide level3">
+<h3>Continue with</h3>
+<p><a href="./09_branching_merging.html">09. Branching and
+Merging</a></p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+    </div>
+  </div>
+
+  <script src="./dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="./plugin/notes/notes.js"></script>
+  <script src="./plugin/search/search.js"></script>
+  <script src="./plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
