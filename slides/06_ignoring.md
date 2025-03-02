@@ -174,6 +174,29 @@ You want to keep them but you do not want to track them through `git`.
 
 [07. Remotes in GitHub](./07_github.html)
 
+<div style="font-size: 40%;">
+
+**Content **
+
+[01. Intro to Git](./01_intro_git.html)
+
+[02. Setting up Git](./02_setting_up.html)
+
+[03. Creating a repository](./03_creating_repository.html)
+
+[04. Tracking changes](./04_tracking_changes.html)
+
+[05. Exploring History](./05_exploring_history.html)
+
+[06. Ignoring things](./06_ignoring.html)
+
+[07. Remotes in GitHub](./07_github.html)
+
+[08. Collaborating](./08_collaborating.html)
+
+[09. Branching and Merging](./09_branching_merging.html)
+</div>
+
 <img src="imgs/hida-logo.svg" width="400">
 
 

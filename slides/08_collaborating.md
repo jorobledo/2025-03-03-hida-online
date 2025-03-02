@@ -95,10 +95,9 @@ $ git push origin main
 ### Remotes
 
 A remote is a copy of the repository
-that is hosted somewhere else, that we can `push` to and `pull` from, and
-there's no reason that you have to work with only one.
-On some large projects you might have your own copy in your GitHub
-account (you'd probably call this `origin`) and also the main "upstream"
+that is hosted somewhere else, that we can `push` to and `pull` from.
+On large projects you might have your own copy in your GitHub
+account (probably `origin`) and also the main "upstream"
 project repository.
 You would pull from `upstream` from time to
 time to get the latest updates that other people have committed.
@@ -111,7 +110,7 @@ time to get the latest updates that other people have committed.
 - `git remote set-url [name] [newurl]` changes the URL that is associated
   with the remote. This is useful if it has moved.
 - `git remote rename [oldname] [newname]` changes the local alias by which a remote
-  is known - its name. For example, one could use this to change `upstream` to `alfred`.
+  is known - its name.
   
 ---
 
@@ -158,5 +157,28 @@ read and review.
 ### Continue with
 
 [09. Branching and Merging](./09_branching_merging.html)
+
+<div style="font-size: 40%;">
+
+**Content **
+
+[01. Intro to Git](./01_intro_git.html)
+
+[02. Setting up Git](./02_setting_up.html)
+
+[03. Creating a repository](./03_creating_repository.html)
+
+[04. Tracking changes](./04_tracking_changes.html)
+
+[05. Exploring History](./05_exploring_history.html)
+
+[06. Ignoring things](./06_ignoring.html)
+
+[07. Remotes in GitHub](./07_github.html)
+
+[08. Collaborating](./08_collaborating.html)
+
+[09. Branching and Merging](./09_branching_merging.html)
+</div>
 
 <img src="imgs/hida-logo.svg" width="400">
