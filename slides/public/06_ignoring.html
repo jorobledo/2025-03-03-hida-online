@@ -5,7 +5,7 @@
   <meta name="generator" content="pandoc">
   <meta name="author" content="Jose Robledo">
   <meta name="dcterms.date" content="2025-03-04">
-  <title>Introduction to Git</title>
+  <title>Ignoring Things</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -243,218 +243,147 @@
     <div class="slides">
 
 <section id="title-slide">
-  <h1 class="title">Introduction to Git</h1>
+  <h1 class="title">Ignoring Things</h1>
   <p class="author">Jose Robledo</p>
   <p class="date">04 March 2025</p>
 </section>
 
-<section id="important-links" class="slide level2">
-<h2>Important links</h2>
+<section id="objectives" class="slide level2">
+<h2>Objectives</h2>
 <ul>
-<li class="fragment"><a
-href="https://swcarpentry.github.io/git-novice/index.html">Main material
-- The Carpentries</a></li>
-<li class="fragment"><a href="">Zoom link</a></li>
-<li class="fragment"><a href="">Course page</a></li>
-<li class="fragment"><a href="">HIDA page</a></li>
-<li class="fragment"><a href="">Survey at the end of the course</a></li>
-<li class="fragment"><a href="">Source for these slides</a></li>
+<li class="fragment">Configure Git to ignore specific files.</li>
+<li class="fragment">Explain why ignoring files can be useful.</li>
 </ul>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="goals-for-this-course" class="slide level2">
-<h2>Goals for this course:</h2>
+<h3 id="questions">Questions</h3>
 <ul>
-<li class="fragment">Get started with Git! Improve your daily
-workflow</li>
-<li class="fragment">Understand the benefits of an automated version
-control system</li>
-<li class="fragment">Understand how Git works and gain awareness of its
-most useful features</li>
-<li class="fragment">Host local git repositories on the cloud using
-Github</li>
+<li class="fragment">How can I tell Git to ignore files I don’t want to
+track?</li>
 </ul>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
 <section class="slide level2">
 
-<h3 id="schedule">Schedule</h3>
-<div class="col-md-6">
-<h3>
-Day 2
-</h3>
-<table class="table table-striped">
-<tr>
-<td>
-09:00
-</td>
-<td>
-Version Control with Git
-</td>
-</tr>
-<tr>
-<td>
-10:30
-</td>
-<td>
-Morning break
-</td>
-</tr>
-<tr>
-<td>
-11:00
-</td>
-<td>
-Version Control with Git (Continued)
-</td>
-</tr>
-<tr>
-<td>
-12:00
-</td>
-<td>
-Wrap-up Course
-</td>
-</tr>
-<tr>
-<td>
-12:30
-</td>
-<td>
-<a href="{{ site.post_survey }}{{ site.github.project_title }}" target="_blank" rel="noopener noreferrer">Post-workshop
-Survey</a>
-</td>
-</tr>
-<tr>
-<td>
-13:00
-</td>
-<td>
-END
-</td>
-</tr>
-</table>
-</div>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="do-you-have-git" class="slide level2">
-<h2>Do you have Git?</h2>
-<p>We will be using Git interactively today, so it’s important that
-everyone has it installed locally! Most probabily you already have it
-installed, if not, you can find how to install it <a
-href="https://carpentries.github.io/workshop-template/install_instructions/#git">here</a></p>
-<div class="fragment">
-<p>We can check if we have Git by opening a command-line/terminal and
-typing in:</p>
+<h3 id="ignoring-files">Ignoring files</h3>
+<p>What if we have files that we do not want Git to track for us, like
+backup files created by our editor or intermediate files created during
+data analysis? Let’s create a few dummy files:</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git</span></code></pre></div>
-</div>
-<ul>
-<li class="fragment">Reminder: Don’t write the <code>$</code> sign! This
-is just an indicator that the following prompt should be typed in your
-terminal.</li>
-</ul>
-<p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section class="slide level2">
-
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir receipts</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> touch a.png b.png c.png receipts/a.jpg receipts/b.jpg</span></code></pre></div>
+<p>and see what Git says:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">usage:</span> git [-v <span class="kw">|</span> <span class="ex">--version]</span> [-h <span class="kw">|</span> <span class="ex">--help]</span> [-C <span class="op">&lt;</span>path<span class="op">&gt;</span>] [-c <span class="op">&lt;</span>name<span class="op">&gt;</span>=<span class="op">&lt;</span>value<span class="op">&gt;</span>]</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>           <span class="ex">[--exec-path[=</span><span class="op">&lt;</span>path<span class="op">&gt;</span>]] <span class="pp">[--</span><span class="ss">html</span><span class="pp">-</span><span class="ss">path</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">man</span><span class="pp">-</span><span class="ss">path</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">info</span><span class="pp">-</span><span class="ss">path</span><span class="pp">]</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>           <span class="ex">[-p</span> <span class="kw">|</span> <span class="ex">--paginate</span> <span class="kw">|</span> <span class="ex">-P</span> <span class="kw">|</span> <span class="ex">--no-pager]</span> <span class="pp">[--</span><span class="ss">no</span><span class="pp">-</span><span class="ss">replace</span><span class="pp">-</span><span class="ss">objects</span><span class="pp">]</span> <span class="pp">[--</span><span class="ss">bare</span><span class="pp">]</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="ex">[--git-dir=</span><span class="op">&lt;</span>path<span class="op">&gt;</span>] [--work-tree=<span class="op">&lt;</span>path<span class="op">&gt;</span>] [--namespace=<span class="op">&lt;</span>name<span class="op">&gt;</span>]</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>           <span class="ex">[--super-prefix=</span><span class="op">&lt;</span>path<span class="op">&gt;</span>] [--config-env=<span class="op">&lt;</span>name<span class="op">&gt;</span>=<span class="op">&lt;</span>envvar<span class="op">&gt;</span>]</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>           <span class="op">&lt;</span>command<span class="op">&gt;</span> <span class="ex">[</span><span class="op">&lt;</span>args<span class="op">&gt;</span>]</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">These</span> are common Git commands used in various situations:</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ex">start</span> a working area <span class="er">(</span><span class="ex">see</span> also: git help tutorial<span class="kw">)</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>   <span class="ex">clone</span>     Clone a repository into a new directory</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>   <span class="ex">init</span>      Create an empty Git repository or reinitialize an existing one</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="ex">work</span> on the current change <span class="er">(</span><span class="ex">see</span> also: git help everyday<span class="kw">)</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>   <span class="ex">add</span>       Add file contents to the index</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mv</span>        Move or rename a file, a directory, or a symlink</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>   <span class="ex">restore</span>   Restore working tree files</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>   <span class="fu">rm</span>        Remove files from the working tree and from the index</span></code></pre></div>
-</section>
-<section id="github" class="slide level2">
-<h2>Github?</h2>
-<p>We will also be needing to use Github if you want to follow up on the
-tutorial on how to push your local repository to the cloud. There are
-other options (Gitlab, Gitbucket, etc.) but we provide a tutorial for
-Github.</p>
-<p><a
-href="https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github">Instructions
-to create a Github account</a></p>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
 <section class="slide level2">
 
-<h3 id="prepare-working-directory">Prepare Working Directory</h3>
+<p>Putting these files under version control would be a waste of disk
+space. What’s worse, having them all listed could distract us from
+changes that actually matter, so let’s tell Git to ignore them.</p>
+<p>We do this by creating a file in the root directory of our project
+called <code>.gitignore</code>:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd Desktop </span></code></pre></div>
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> nano .gitignore</span></code></pre></div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="what-is-git" class="slide level2">
-<h2>What is Git?</h2>
-<h3 id="automated-version-control-system">Automated version control
-system</h3>
-<div class="fragment">
-<figure>
-<img data-src="imgs/phd101212s.png"
-alt="Comic: a PhD student sends &quot;FINAL.doc&quot; to their supervisor, but after several increasingly intense and frustrating rounds of comments and revisions they end up with a file named &quot;FINAL_rev.22.comments49.corrections.10.#@$%WHYDIDCOMETOGRADSCHOOL????.doc&quot;" />
-<figcaption>“notFinal.doc” by Jorge Cham, <a
-href="https://www.phdcomics.com"
-class="uri">https://www.phdcomics.com</a></figcaption>
-</figure>
-</div>
 </section>
 <section class="slide level2">
 
-<ul>
-<li class="fragment">Single user</li>
-</ul>
-<div class="fragment">
-<p><img src="imgs/play-changes.svg" height="200"></p>
-</div>
-<ul>
-<li class="fragment">Two users</li>
-</ul>
-<div class="fragment">
-<p><img src="imgs/versions.svg" height="300">
-<img src="imgs/merge.svg" height="300"></p>
-</div>
-<ul>
-<li class="fragment">Modify the same thing? ➡️ <a
-href="https://swcarpentry.github.io/git-novice/reference.html#conflict">conflict</a></li>
-</ul>
-</section>
-<section id="takeaways" class="slide level2">
-<h2>Takeaways</h2>
-<ul>
-<li class="fragment"><p>A version control system is a tool that keeps
-track of these changes for us, effectively creating different versions
-of our files.</p></li>
-<li class="fragment"><p>It allows us to decide which changes will be
-made to the next version (each record of these changes is called a <a
-href="https://swcarpentry.github.io/git-novice/reference.html#commit">commit</a>),
-and keeps useful metadata about them.</p></li>
-<li class="fragment"><p>The complete history of commits for a particular
-project and their metadata make up a <a
-href="https://swcarpentry.github.io/git-novice/reference.md#repository">repository</a>.</p></li>
-<li class="fragment"><p>version control is like unlimited ‘undo’ or
-CTRL-Z.</p></li>
-<li class="fragment"><p>Allows many people to work in parallel.</p></li>
-</ul>
+<p>Type the text below into the <code>.gitignore</code> file:</p>
+<pre><code>*.png
+receipts/</code></pre>
+<p>Save the file and exit your editor.</p>
+<p>Verify that the file contains the files to ignore.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat .gitignore</span></code></pre></div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="section"></h3>
+<p>Can (usually must) track .gitignore. Helps others</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git add .gitignore</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git commit <span class="at">-m</span> <span class="st">&quot;Ignore png files and the receipts folder.&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
+<p>If we want to override our ignore settings, we can use
+<code>git add -f</code> to force Git to add something. For example,
+<code>git add -f a.csv</code>.</p>
+<p>We can also always see the status of ignored files if we want:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status <span class="at">--ignored</span></span></code></pre></div>
+<p>Nested ignoring also works.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Also possible to ignore all etensions for example, except a given
+file by using <code>!</code> in your <code>.gitignore</code></p>
+<pre class="output"><code>*.png           # ignore all png files
+!final.png      # except final.png</code></pre>
+<p>Note also that, if you’ve previously committed <code>.png</code>
+files in this lesson, they will not be ignored with this new rule. Only
+future additions of <code>.png</code> files to the root directory will
+be ignored.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="exercise-1">Exercise 1</h3>
+<p>Given a directory structure that looks similar to the earlier Nested
+Files exercise, but with a slightly different directory structure:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/images</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/plots</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/analysis</span></span></code></pre></div>
+<p>How would you ignore all of the contents in the receipts folder, but
+not <code>receipts/data</code>?</p>
+<p>Hint: think a bit about how you created an exception with the
+<code>!</code> operator before.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="exercise-2">Exercise 2</h3>
+<p>Assuming you have an empty .gitignore file, and given a directory
+structure that looks like:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/data/market_position/gps/a.dat</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/data/market_position/gps/b.dat</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/data/market_position/gps/c.dat</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/data/market_position/gps/info.txt</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">receipts/plots</span></span></code></pre></div>
+<p>What’s the shortest <code>.gitignore</code> rule you could write to
+ignore all <code>.dat</code> files in
+<code>receipts/data/market_position/gps</code>? Do not ignore the
+<code>info.txt</code>.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="exercise-3">Exercise 3</h3>
+<p>You wrote a script that creates many intermediate log-files of the
+form <code>log_01</code>, <code>log_02</code>, <code>log_03</code>, etc.
+You want to keep them but you do not want to track them through
+<code>git</code>.</p>
+<ol type="1">
+<li class="fragment"><p>Write <strong>one</strong>
+<code>.gitignore</code> entry that excludes files of the form
+<code>log_01</code>, <code>log_02</code>, etc.</p></li>
+<li class="fragment"><p>Test your “ignore pattern” by creating some
+dummy files of the form <code>log_01</code>, etc.</p></li>
+<li class="fragment"><p>You find that the file <code>log_01</code> is
+very important after all, add it to the tracked files without changing
+the <code>.gitignore</code> again.</p></li>
+<li class="fragment"><p>Discuss with your neighbor what other types of
+files could reside in your directory that you do not want to track and
+thus would exclude via <code>.gitignore</code>.</p></li>
+</ol>
 </section>
 <section class="slide level2">
 
 <h3 id="continue-with">Continue with</h3>
-<p><a href="./02_setting_up.html">Setting up Git</a></p>
+<p><a href="./07_github.html">07. Remotes in GitHub</a></p>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
     </div>

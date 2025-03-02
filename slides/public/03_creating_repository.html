@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Jose Robledo">
+  <meta name="dcterms.date" content="2025-03-04">
   <title>Creating a repository</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -244,11 +245,12 @@
 <section id="title-slide">
   <h1 class="title">Creating a repository</h1>
   <p class="author">Jose Robledo</p>
-  <p class="date">February 2025</p>
+  <p class="date">04 March 2025</p>
 </section>
 
-<section id="what-is-a-git-repository" class="slide level3">
-<h3>What is a Git repository?</h3>
+<section class="slide level2">
+
+<h3 id="what-is-a-git-repository">What is a Git repository?</h3>
 <ul>
 <li class="fragment">A <a
 href="https://swcarpentry.github.io/git-novice/reference.html#repository">repository</a>
@@ -262,9 +264,7 @@ and its <a
 href="https://git-scm.com/book/en/v2/Git-Basics-Viewing-the-Commit-History">history</a></li>
 </ul>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
-</section>
-<section id="creating-a-directory" class="slide level3">
-<h3>Creating a directory</h3>
+<h3 id="creating-a-directory">Creating a directory</h3>
 <ul>
 <li class="fragment"><p>We will help Alfredo with his new project,
 create a repository with all his recipes.</p></li>
@@ -280,8 +280,9 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="
 </div>
 <p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
-<section id="initializing-a-repository" class="slide level3">
-<h3>Initializing a repository</h3>
+<section class="slide level2">
+
+<h3 id="initializing-a-repository">Initializing a repository</h3>
 <ul>
 <li class="fragment">Then we tell Git to make <code>recipes</code> a <a
 href="https://swcarpentry.github.io/git-novice/reference.html#repository">repository</a>:</li>
@@ -310,6 +311,101 @@ folders (including hidden ones):</li>
 <div class="sourceCode" id="cb3"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-a</span></span></code></pre></div>
 </div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Git uses this special subdirectory to store all the information about
+the project, including the tracked files and sub-directories located
+within the project’s directory. If we ever delete the <code>.git</code>
+subdirectory, we will lose the project’s history.</p>
+<p><code>git status</code> tells us the status of our project, and
+better, a list of changes in the project and options on what to do with
+those changes. We can use it as often as we want, whenever we want to
+understand what is going on.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Output:</p>
+<pre class="output"><code>On branch main
+
+No commits yet
+
+nothing to commit (create/copy files and use &quot;git add&quot; to track)</code></pre>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="excercise">Excercise</h3>
+<p>Along with tracking information about recipes (the project we have
+already created), Alfredo would also like to track information about
+desserts specifically. Alfredo creates a <code>desserts</code> project
+inside his <code>recipes</code> project with the following sequence of
+commands:</p>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd ~/Desktop    <span class="co"># return to Desktop directory</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd recipes      <span class="co"># go into recipes directory, which is already a Git repository</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-a</span>           <span class="co"># ensure the .git subdirectory is still present in the recipes directory</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> mkdir desserts <span class="co"># make a sub-directory recipes/desserts</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cd desserts    <span class="co"># go into desserts subdirectory</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git init        <span class="co"># make the desserts subdirectory a Git repository</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-a</span>           <span class="co"># ensure the .git subdirectory is present indicating we have created a new Git repository</span></span></code></pre></div>
+<p>Is the <code>git init</code> command, run inside the
+<code>desserts</code> subdirectory, required for tracking files stored
+in the <code>desserts</code> subdirectory?</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Git repositories can interfere with each other if they are “nested”:
+the outer repository will try to version-control the inner repository.
+Therefore, <strong>it’s best to create each new Git repository in a
+separate directory</strong>. To be sure that there is no conflicting
+repository in the directory, check the output of
+<code>git status</code>. If it looks like the following, you are good to
+go to create a new repository as shown above:</p>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git status</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">fatal:</span> Not a git repository <span class="er">(</span><span class="ex">or</span> any of the parent directories<span class="kw">)</span><span class="bu">:</span> .git</span></code></pre></div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<p>Alfredo would like now to go back to a single git repository. How can
+Alfredo undo his last <code>git init</code> in the <code>desserts</code>
+subdirectory?</p>
+<p>REMIMNDER: To delete if</p>
+<div class="fragment">
+<p>it’s a file:</p>
+<div class="sourceCode" id="cb8"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm filename</span></code></pre></div>
+</div>
+<div class="fragment">
+<p>it’s a directory:</p>
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> rm <span class="at">-rf</span> dirname</span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="takeaway" class="slide level2">
+<h2>Takeaway</h2>
+<ul>
+<li class="fragment"><code>git init</code> initializes a
+repository.</li>
+<li class="fragment">Git stores all of its repository data in the
+<code>.git</code> directory.</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level2">
+
+<h3 id="continue-with">Continue with</h3>
+<p><a href="./04_tracking_changes.html">04. Tracking changes</a></p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
 </section>
     </div>
   </div>

@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Jose Robledo">
+  <meta name="dcterms.date" content="2025-03-04">
+  <title>Remotes in GitGHub</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="./dist/reset.css">
+  <link rel="stylesheet" href="./dist/reveal.css">
+  <style>
+    .reveal .sourceCode {  /* see #7635 */
+      overflow: visible;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { color: #008000; } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { color: #008000; font-weight: bold; } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="./dist/theme/simple.css" id="theme">
+  <style>
+  .container{
+    display: flex;
+  }
+  .col {
+    flex: 1;
+  }
+
+  .slides {
+      font-size: 0.75em;
+  }
+  .reveal ul {
+      display: block;
+  }
+  .reveal ol {
+      display: block;
+  }
+
+  img {
+      max-height: 600px !important;
+  }
+
+  figcaption {
+      font-size: 0.6em !important;
+      font-style: italic !important;
+  }
+
+  .subtitle {
+      font-style: italic !important;
+  }
+
+  .date {
+      font-size: 0.75em !important;
+  }
+
+
+  body {
+      font-family: "Arial", "sans-serif"
+  }
+
+  section {
+      margin: 0;
+  }
+
+  .reveal .slides {
+      margin: 0 1vmin;
+  }
+  .reveal h1,
+  .reveal h2,
+  .reveal h3,
+  .reveal h4 {
+      font-family: "Arial", "sans-serif";
+      text-transform: Uppercase;
+      color: #053152;
+  }
+
+  .reveal h1 {
+      color: #f1efef;
+      font-size: 250%;
+  }
+
+
+  .reveal h2 + h3 {
+      text-transform: Unset;
+      font-size: 80%;
+  }
+
+  .controls {
+      visibility: hidden;
+  }
+
+  .reveal .progress {
+      position: absolute;
+      bottom: 1px;
+  }
+
+  .prompt {
+      min-width: 0;
+      width: 0;
+      visibility: hidden;
+  }
+
+  div.dateauthor {
+      padding-top: 4em;
+      color: white;
+  }
+
+  div.prompt {
+      width:0;
+  }
+
+
+  div#footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      z-index: 10;
+  font-size: 0.5em; font-weight: bold; padding: 0 1vmin; height: 20vmin; background: #fff}
+  #footer h1 {
+      position: absolute;
+      bottom: 3.2vmin;
+      display: block;
+      padding: 0 1em;
+      font-size: 1.7vmin;
+      font-weight: bold;
+      text-transform: unset;
+      color: #053152;
+  }
+  #footer h2 {display: block; padding: 0.em 1em 0;}
+
+  img.fzjlogo {
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      height: 24vmin; /* The height of the svg is about 3 times the height of the logo */
+      margin-bottom: -3vmin; /* Baseline of logo should be about 5% of short side above edge. */
+  }
+
+  .rendered_html img, svg {
+      max-height: 440px;
+  }
+
+  /* Inline code */
+  code {
+      background-color: #f5f5f5; /* Light gray */
+      color: #333; /* Darker text for contrast */
+      padding: 2px 4px;
+      border-radius: 3px;
+  }
+
+  /* Block code */
+  pre code {
+      background-color: #eeeeee; /* Even lighter gray */
+      color: #222; /* Darker text */
+      display: block;
+      padding: 10px;
+      border-radius: 5px;
+  }
+
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide">
+  <h1 class="title">Remotes in GitGHub</h1>
+  <p class="author">Jose Robledo</p>
+  <p class="date">04 March 2025</p>
+</section>
+
+<section id="objectives" class="slide level3">
+<h3>Objectives</h3>
+<ul>
+<li class="fragment">Learn what remote repositories are and why they are
+useful.</li>
+<li class="fragment">Push to or pull from a remote repository.</li>
+</ul>
+<h4 id="questions">Questions</h4>
+<ul>
+<li class="fragment">How do I share my changes with others on the
+web?</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="hosting-services" class="slide level3">
+<h3>Hosting services</h3>
+<p>Many options</p>
+<ul>
+<li class="fragment"><a
+href="https://github.com"><strong>GitHub</strong></a></li>
+<li class="fragment"><a href="https://bitbucket.org">Bitbucket</a></li>
+<li class="fragment"><a href="https://gitlab.com/">GitLab</a></li>
+</ul>
+<div class="fragment">
+<p>Let’s start by sharing the changes we’ve made to our current project
+with the world. To this end we are going to create a <em>remote</em>
+repository that will be linked to our <em>local</em> repository.</p>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="creating-a-remote-repository" class="slide level3">
+<h3>Creating a remote repository</h3>
+<p>Log in to <a href="https://github.com">GitHub</a>, then click on the
+icon in the top right corner to create a new repository called
+<code>recipes</code>:</p>
+<p><img data-src="imgs/github-create-repo-01.png"
+alt="The first step in creating a repository on GitHub: clicking the &quot;create new&quot; button" /></p>
+<p>Name your repository “recipes” and then click “Create
+Repository”.</p>
+<p>Note: Since this repository will be connected to a local repository,
+it needs to be empty. Leave “Initialize this repository with a README”
+unchecked, and keep “None” as options for both “Add .gitignore” and “Add
+a license.” See the “GitHub License and README files” exercise below for
+a full explanation of why the repository needs to be empty.</p>
+</section>
+<section class="slide level3">
+
+<p><img src='imgs/github-create-repo-02.png' height=500></p>
+<p>As soon as the repository is created, GitHub displays a page with a
+URL and some information on how to configure your local repository</p>
+</section>
+<section class="slide level3">
+
+<p><img data-src="imgs/github-create-repo-03.png"
+alt="The summary page displayed by GitHub after a new repository has been created. It contains instructions for configuring the new GitHub repository as a git remote" /></p>
+</section>
+<section id="now-we-have-something-like-this" class="slide level3">
+<h3>Now we have something like this</h3>
+<p><img data-src="imgs/git-freshly-made-github-repo.svg" /></p>
+</section>
+<section id="connect-local-repository-to-remote" class="slide level3">
+<h3>Connect local repository to remote</h3>
+<p>Now we connect the two repositories. We do this by making the GitHub
+repository a <a
+href="https://swcarpentry.github.io/git-novice/reference.html#remote">remote</a>
+for the local repository. The home page of the repository on GitHub
+includes the URL string we need to identify it:</p>
+<p><img data-src="imgs/github-change-repo-string.png"
+alt="A screenshot showing that clicking on &quot;SSH&quot; will make GitHub provide the SSH URL for a repository instead of the HTTPS URL" /></p>
+<p>Click on the ‘SSH’ link to change the <a
+href="https://swcarpentry.github.io/git-novice/reference.html#protocol">protocol</a>
+from HTTPS to SSH.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<h4 id="establishing-ssh-connection-a-bit-hard">Establishing SSH
+connection (a bit hard)</h4>
+<p>We use SSH here because, while it requires some additional
+configuration, it is a security protocol widely used by many
+applications. The steps below describe SSH at a minimum level for
+GitHub.</p>
+<p>Before we can connect to a remote repository, we need to set up a way
+for our computer to authenticate with GitHub so it knows it’s us trying
+to connect to our remote repository.</p>
+<ul>
+<li class="fragment">We will use Secure Shell Protocol (SSH).</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="secure-shell-protocol-ssh" class="slide level3">
+<h3>Secure Shell Protocol (SSH)</h3>
+<p>SSH uses what is called a <strong>key pair</strong>. This is two keys
+that work together to validate access. One key is publicly known and
+called the public key, and the other key called the private key is kept
+private. Very descriptive names.</p>
+<ul>
+<li class="fragment">You can think of the public key as a padlock, and
+only you have the key (the private key) to open it. You use the public
+key where you want a secure method of communication, such as your GitHub
+account. You give this padlock, or public key, to GitHub and say “lock
+the communications to my account with this so that only computers that
+have my private key can unlock communications and send git commands as
+my GitHub account.”</li>
+</ul>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section id="setting-up-ssh-keys" class="slide level3">
+<h3>Setting up SSH keys</h3>
+<ul>
+<li class="fragment"><p>This setup only needs to be done once, so if you
+already did it, you can relax :)</p></li>
+<li class="fragment"><p>Keys are stores in a folder in your home
+directory called <code>.ssh</code> You can see it by typing</p></li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ls <span class="at">-al</span> ~/.ssh</span></code></pre></div>
+</div>
+<ul>
+<li class="fragment">You can create a new SSH key pair by typing</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh-keygen <span class="at">-t</span> ed25519 <span class="at">-C</span> <span class="st">&quot;a.linguini@ratatouille.fr&quot;</span></span></code></pre></div>
+<p>comment: <code>-t</code> option specifies which type of algorithm to
+use and <code>-C</code> attaches a comment to the key</p>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<p>You should see something like this:</p>
+<pre class="output"><code>Generating public/private ed25519 key pair.
+Enter file in which to save the key (/c/Users/Alfredo/.ssh/id_ed25519):</code></pre>
+<p>Since we will use the defautl file, just press Enter.</p>
+<p>You will be prompted for a passphrase (optional, you can just press
+enter to not include a prassphrase).</p>
+<pre class="output"><code>Your identification has been saved in /c/Users/Alfredo/.ssh/id_ed25519
+Your public key has been saved in /c/Users/Alfredo/.ssh/id_ed25519.pub
+The key fingerprint is:
+SHA256:SMSPIStNyA00KPxuYu94KpZgRAYjgt9g4BA4kFy3g1o a.linguini@ratatouille.fr
+The key&#39;s randomart image is:
++--[ED25519 256]--+
+|^B== o.          |
+|%*=.*.+          |
+|+=.E =.+         |
+| .=.+.o..        |
+|....  . S        |
+|.+ o             |
+|+ =              |
+|.o.o             |
+|oo+.             |
++----[SHA256]-----+</code></pre>
+</section>
+<section id="copy-the-public-key-to-github" class="slide level3">
+<h3>Copy the public key to GitHub</h3>
+<p>First, we need to copy the public key. Be sure to include the
+<code>.pub</code> at the end, otherwise you’re looking at the private
+key.</p>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div>
+<pre class="output"><code>ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDmRA3d51X0uu9wXek559gfn6UFNF69yZjChyBIU2qKI a.linguini@ratatouille.fr</code></pre>
+<p>Now, going to GitHub.com, click on your profile icon in the top right
+corner to get the drop-down menu. Click “Settings”, then on the settings
+page, click “SSH and GPG keys”, on the left side “Access” menu. Click
+the “New SSH key” button on the right side.</p>
+<p><strong>Paste your SSH key into the field, and click the “Add SSH
+key” to complete the setup</strong>.</p>
+</section>
+<section id="test-if-it-worked" class="slide level3">
+<h3>Test if it worked</h3>
+<div class="sourceCode" id="cb7"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-T</span> git@github.com</span></code></pre></div>
+<pre class="output"><code>Hi Alfredo! You&#39;ve successfully authenticated, but GitHub does not provide shell access.</code></pre>
+<ul>
+<li class="fragment">If you changed the name of the filename for the
+key, then you need to pass it to <code>ssh</code> command with the
+<code>-i</code> flag. For example,</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb9"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519 <span class="at">-f</span> test</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> <span class="at">-i</span> ~/.ssh/test git@github.com</span></code></pre></div>
+</div>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<h4 id="finally-establishing-ssh-connection">Finally establishing SSH
+connection</h4>
+<p><img data-src="imgs/github-find-repo-string.png"
+alt="Clicking the &quot;Copy to Clipboard&quot; button on GitHub to obtain the repository&#39;s URL" /></p>
+<p>Copy that URL from the browser, go into the local
+<code>recipes</code> repository, and run this command:</p>
+<div class="sourceCode" id="cb10"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git remote add origin git@github.com:alfin/recipes.git</span></code></pre></div>
+<p>Comment: Use your username.</p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+<section class="slide level3">
+
+<ul>
+<li class="fragment"><p><code>origin</code> is a local name used to
+refer to the remote repository. It could be called anything, but
+<code>origin</code> is a convention that is often used by default in git
+and GitHub, so it’s helpful to stick with this unless there’s a reason
+not to.</p></li>
+<li class="fragment"><p>We can check that the command has worked by
+running <code>git remote -v</code></p></li>
+</ul>
+</section>
+<section id="push-local-changes-to-remote" class="slide level3">
+<h3>Push local changes to remote</h3>
+<p>Now that authentication is setup, we can return to the remote. This
+command will push the changes from our local repository to the
+repository on GitHub:</p>
+<div class="sourceCode" id="cb11"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git push origin main</span></code></pre></div>
+<p>Since Alfredo set up a passphrase, it will prompt him for it. If you
+completed advanced settings for your authentication, it will not prompt
+for a passphrase.</p>
+</section>
+<section id="comments" class="slide level3">
+<h3>comments</h3>
+<ul>
+<li class="fragment">If proxy, you need to tell Git about the
+proxy:</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb12"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> http.proxy http://user:password@proxy.url</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git config <span class="at">--global</span> https.proxy https://user:password@proxy.url</span></code></pre></div>
+</div>
+<ul>
+<li class="fragment"><p>If your operating system has a password manager
+configured, <code>git push</code> will try to use it when it needs your
+username and password (default behavior for Git Bash on Windows).
+Possible to use <code>unset SSH_ASKPASS</code>.</p></li>
+<li class="fragment"><p><code>-u</code> is synonymous with the
+<code>--set-upstream-to</code> option for the <code>git branch</code>
+command, and is used to associate the current branch with a remote
+branch so that the <code>git pull</code> command can be used without any
+arguments. <code>git push -u origin main</code> once the remote has been
+set up.</p></li>
+</ul>
+</section>
+<section id="finally-we-are-here" class="slide level3">
+<h3>Finally, we are here</h3>
+<p><img data-src="imgs/github-repo-after-first-push.svg"
+alt="A diagram showing how &quot;git push origin&quot; will push changes from the local repository to the remote, making the remote repository an exact copy of the local repository." /></p>
+</section>
+<section id="pulling" class="slide level3">
+<h3>Pulling</h3>
+<p>We can pull changes from the remote repository to the local one as
+well:</p>
+<div class="sourceCode" id="cb13"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> git pull origin main</span></code></pre></div>
+<p>Pulling has no effect in this case because the two repositories are
+already synchronized. If someone else had pushed some changes to the
+repository on GitHub, though, this command would download them to our
+local repository.</p>
+</section>
+<section id="continue-with" class="slide level3">
+<h3>Continue with</h3>
+<p><a href="./08_collaborating.html">08. Collaborating</a></p>
+<p><img src="imgs/hida-logo.svg" width="400"></p>
+</section>
+    </div>
+  </div>
+
+  <script src="./dist/reveal.js"></script>
+
+  <!-- reveal.js plugins -->
+  <script src="./plugin/notes/notes.js"></script>
+  <script src="./plugin/search/search.js"></script>
+  <script src="./plugin/zoom/zoom.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: false,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: true,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // reveal.js plugins
+        plugins: [
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    </body>
+</html>
