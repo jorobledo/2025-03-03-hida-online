@@ -110,7 +110,7 @@ SSH uses what is called a **key pair**. This is two keys that work together to v
 
 - This setup only needs to be done once, so if you already did it, you can relax :) 
 
-- Keys are stores in a folder in your home directory called `.ssh` You can see it by typing
+- Keys are stored in a folder in your home directory called `.ssh`. You can see it by typing
 
 <div class="fragment">
 ```bash

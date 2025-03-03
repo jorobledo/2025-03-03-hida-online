@@ -169,7 +169,7 @@ $ git diff
 
 Git has a special *staging area*
 where it keeps track of things that have been added to
-the current [changeset](https://swcarpentry.github.io/git-novice/reference.md#changeset)
+the current [changeset](https://swcarpentry.github.io/git-novice/reference.html#changeset)
 but not yet committed.
 
 - `git add` specifies *what* will go in the staging area,
@@ -299,7 +299,7 @@ Which of the following commit messages would be most appropriate for the
 last commit made to `guacamole.md`?
 
 1. "Changes"
-2. "Changed lemon for lime"
+2. "Change lemon for lime"
 3. "Guacamole modified to the traditional recipe"
 
 <img src="imgs/hida-logo.svg" width="400">

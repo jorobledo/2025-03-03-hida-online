@@ -7,7 +7,7 @@ date: 04 March 2025
 ## Objectives
 
 - Configure Git to ignore specific files.
-- Explain why ignoring files can be useful.
+- Understand why ignoring files can be useful.
 
 ### Questions
 
@@ -99,7 +99,7 @@ Nested ignoring also works.
 
 ---
 
-Also possible to ignore all etensions for example, except a given file by using `!` in your `.gitignore`
+Also possible to ignore all extensions for example, except a given file by using `!` in your `.gitignore`
 
 ```output
 *.png           # ignore all png files
@@ -116,8 +116,7 @@ of `.png` files to the root directory will be ignored.
 
 ### Exercise 1
 
-Given a directory structure that looks similar to the earlier Nested Files
-exercise, but with a slightly different directory structure:
+Given a directory structure that looks like:
 
 ```bash
 receipts/data
@@ -165,7 +164,8 @@ You want to keep them but you do not want to track them through `git`.
 
 3. You find that the file `log_01` is very important after all, add it to the tracked files without changing the `.gitignore` again.
 
-4. Discuss with your neighbor what other types of files could reside in your directory that you do not want to track and thus would exclude via `.gitignore`.
+
+<img src="imgs/hida-logo.svg" width="400">
 
 ---
 
