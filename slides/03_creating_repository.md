@@ -44,9 +44,7 @@ $ git init
 
 <div class="fragment" style="font-size:70%;">
 It is important to note that `git init` will create a repository that
-can include subdirectories and their files---there is no need to create
-separate repositories nested within the `recipes` repository, whether
-subdirectories are present from the beginning or added later. Also, note
+can include subdirectories and their files. Also, note
 that the creation of the `recipes` directory and its initialization as a
 repository are **completely separate processes**.
 </div>

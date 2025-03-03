@@ -154,13 +154,13 @@ $ cd Desktop
 
 ---
 
-## Takeaways
+## Version control 
 
 - A version control system is a tool that keeps track of these changes for us, effectively creating different versions of our files.
 
 - It allows us to decide which changes will be made to the next version (each record of these changes is called a [commit](https://swcarpentry.github.io/git-novice/reference.html#commit)), and keeps useful metadata about them. 
 
-- The complete history of commits for a particular project and their metadata make up a [repository](https://swcarpentry.github.io/git-novice/reference.md#repository).
+- The complete history of commits for a particular project and their metadata make up a [repository](https://swcarpentry.github.io/git-novice/reference.html#repository).
 
 - version control is like unlimited 'undo' or CTRL-Z.
 
