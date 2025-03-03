@@ -169,7 +169,7 @@ $ git diff
 
 Git has a special *staging area*
 where it keeps track of things that have been added to
-the current [changeset](https://swcarpentry.github.io/git-novice/reference.md#changeset)
+the current [changeset](https://swcarpentry.github.io/git-novice/reference.html#changeset)
 but not yet committed.
 
 - `git add` specifies *what* will go in the staging area,
