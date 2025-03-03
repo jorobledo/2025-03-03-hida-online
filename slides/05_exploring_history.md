@@ -139,7 +139,7 @@ the working copy with the last committed version. We use the `.` to mean all fil
 
 ---
 
-### Excercise
+### exercise
 
 - Jennifer has made changes to the Python script that she has been working on for weeks, and the
 modifications she made this morning "broke" the script and it no longer runs. She has spent

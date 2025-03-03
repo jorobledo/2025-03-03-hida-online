@@ -90,7 +90,7 @@ nothing to commit (create/copy files and use "git add" to track)
 
 ---
 
-### Excercise
+### Exercise
 
 Along with tracking information about recipes (the project we have already created),
 Alfredo would also like to track information about desserts specifically.

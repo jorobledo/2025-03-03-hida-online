@@ -159,7 +159,7 @@ $ git diff
 
 **comment**: you might need to press `q` to exit the `git diff` commmand. If you have colors on your terminal, green (and `+` symbols) are addition and red (and `-` symbols) are deletions.
 
-- **Excercise**: add, review, and commit the changes with commit message "Add ingredients for basic guacamole".
+- **exercise**: add, review, and commit the changes with commit message "Add ingredients for basic guacamole".
 
 <img src="imgs/hida-logo.svg" width="400">
 
@@ -181,7 +181,7 @@ but not yet committed.
 
 ---
 
-## Excercise
+## exercise
 
 - Improve our recipe by changing 'lemon' to 'lime' in `guacamole.md`
 
@@ -306,7 +306,7 @@ last commit made to `guacamole.md`?
 
 ---
 
-### Excercise
+### exercise
 
 #### Committing Multiple Files
 
@@ -324,7 +324,7 @@ that you want to commit as a single snapshot.
 
 ---
 
-### Excercise
+### exercise
 
 #### `bio` Repository
 
