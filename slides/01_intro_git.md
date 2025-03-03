@@ -53,12 +53,12 @@ date: 04 March 2025
 <div class="col-md-6">
 <h3>Day 2</h3>
 <table class="table table-striped">
-  <tr> <td>09:00</td>  <td>Version Control with Git</td> </tr>
-  <tr> <td>10:30</td>  <td>Morning break</td> </tr>
-  <tr> <td>11:00</td>  <td>Version Control with Git (Continued)</td> </tr>
-  <tr> <td>12:00</td>  <td>Wrap-up Course</td> </tr>
-  <tr> <td>12:30</td>  <td><a href="{{ site.post_survey }}{{ site.github.project_title }}" target="_blank" rel="noopener noreferrer">Post-workshop Survey</a></td> </tr>
-  <tr> <td>13:00</td>  <td>END</td> </tr>
+   <tr> <td>09:00</td>  <td>Git: creating repo and tracking changes</td> </tr>
+   <tr> <td>10:30</td>  <td>Morning break</td> </tr>
+   <tr> <td>11:00</td>  <td>Git: History and ignoring things</td> </tr>
+   <tr> <td>12:00</td>  <td>Remotes in GitHub</td> </tr>
+   <tr> <td>12:40</td>  <td>Post-workshop Survey</td> </tr>
+   <tr> <td>13:00</td>  <td>END</td> </tr>
 </table>
 </div>
 
@@ -130,7 +130,7 @@ $ cd Desktop
 
 <div class="fragment">
 
-!["notFinal.doc" by Jorge Cham, <https://www.phdcomics.com>](imgs/phd101212s.png){alt='Comic: a PhD student sends "FINAL.doc" to their supervisor, but after several increasingly intense and frustrating rounds of comments and revisions they end up with a file named "FINAL_rev.22.comments49.corrections.10.#@$%WHYDIDCOMETOGRADSCHOOL????.doc"'}
+<img src="imgs/phd101212s.png" height=500>
 
 </div>
 
