@@ -90,6 +90,9 @@ the pitch.
 {% endcomment %}
 
 <p> <a href="https://events.hifis.net/event/2053/"> Link to HIDA event page </a></p>
+
+<p> <a href="https://jorobledo.github.io/2025-03-03-hida-online/slides/public/01_intro_git.html"> Link to slides for day 2: Introduction to git </a></p>
+
 <p>
 <strong><a href="https://carpentries.org">The Carpentries</a></strong> project comprises the <a
 href="{{site.swc_site}}">Software Carpentry</a>, <a href="{{site.dc_site}}">Data Carpentry</a>, and
