@@ -10,6 +10,7 @@ date: 04 March 2025
 - [Course page](https://jorobledo.github.io/2025-03-03-hida-online/)
 - [HIDA event page](https://events.hifis.net/event/2053/)
 - [Source for these slides](https://github.com/jorobledo/2025-03-03-hida-online/tree/gh-pages/slides)
+- [Great game to learn Git Branching](https://learngitbranching.js.org/)
 
 <img src="imgs/hida-logo.svg" width="400">
 
